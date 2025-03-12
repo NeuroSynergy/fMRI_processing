@@ -9,15 +9,12 @@ RUN apt-get update && apt-get install -y \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# # Install SPM (Statistical Parametric Mapping)
-# RUN wget https://www.fil.ion.ucl.ac.uk/spm/download/restricted/eldorado/spm12.zip -O /tmp/spm12.zip \
-#     && unzip /tmp/spm12.zip -d /opt/spm12 \
-#     && rm /tmp/spm12.zip
+RUN conda install -n base conda-libmamba-solver
 
-# # Set SPM12 environment variable
-# ENV SPMMCRCMD="/opt/spm12/spm12_mcr/spm12_run.sh"
+# Install Mamba (faster than Conda)
+RUN conda config --set solver libmamba
 
-# Install Python packages using Conda
+# Use Mamba to install Python packages (faster solver)
 RUN conda install -c conda-forge \
     nipype \
     nilearn \
@@ -25,7 +22,7 @@ RUN conda install -c conda-forge \
     matplotlib \
     && conda clean -afy
 
-# Install fmriprep
+# Install fmriprep with pip
 RUN pip install fmriprep 
 
 # Set the default command
