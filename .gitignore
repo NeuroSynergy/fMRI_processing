@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+workflow
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+dist/
+*.egg-info/
+
+# Conda environment files
+*.conda
+env.yml
+
+
+*.tar
+
+# Logs and database files
+*.log
+db.sqlite3
+
+
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Python virtual environment
+venv/
+
+# Ignore the fmriprep working directory if applicable
+fmriprep_wd/
+
+# VS Code settings
+.vscode/
+
+# Data files
+*.nii
+*.nii.gz
+*.bval
+*.bvec
+*.tsv
