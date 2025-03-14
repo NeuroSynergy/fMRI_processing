@@ -23,7 +23,7 @@ RUN conda install -c conda-forge \
     && conda clean -afy
 
 # Install fmriprep with pip
-RUN pip install fmriprep 
+RUN pip install fmriprep dcm2niix
 
 # Set the default command
 CMD ["/bin/bash"]
