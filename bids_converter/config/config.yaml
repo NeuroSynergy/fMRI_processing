@@ -1,0 +1,59 @@
+# 全局配置
+global:
+  raw_data_dir: "../data/raw"
+  dicom_dir: "../data/dicom"
+  bids_output_dir: "../data/bids"
+  event_from_dir: "../data/events"
+  mapping_file: "../data/mapping/bids_structure_with_mapping.xlsx"
+  temp_dir: "../data/temp"
+  log_level: "INFO"
+
+# 工具配置（统一管理 dcm2niix 参数）
+tools:
+  dcm2niix:
+    path: "dcm2niix"  # 若不在系统 PATH 中，可指定完整路径
+    options:
+      compress: "y"
+      filename_format: "%p_%s"
+
+# 文件夹映射配置：原始文件夹前缀到 BIDS 类型映射
+folder_mappings:
+  BOLD: func
+  Fieldmap: fmap
+  T1: anat
+
+# 映射生成模块配置
+mapping:
+  valid_folder_prefixes: ["BOLD", "Fieldmap", "T1"]
+  subject_mapping:
+    H875574:
+      bids_id: "sub-01"
+      experiment_id: "YO01"
+    H162031:
+      bids_id: "sub-02"
+      experiment_id: "NY02"
+    H563995:
+      bids_id: "sub-03"
+      experiment_id: "SF03"
+  task_mapping:
+    "478": "per"
+    "294": "mod"
+    "326": "ecog"
+
+# DICOM 转换模块配置（调用工具时直接使用 tools.dcm2niix.options）
+conversion:
+  enabled: true
+  output_temp_dir: "temp_nifti"
+
+# 解压缩模块配置
+unzip:
+  enabled: true
+  file_extension: ".zip"
+  temp_folder: "temp_unzip"
+
+# JSON 更新模块配置
+json_update:
+  default_fields:
+    phasediff:
+      EchoTime1: 0.00738
+      EchoTime2: 0.00984
