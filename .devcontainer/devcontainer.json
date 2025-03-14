@@ -3,6 +3,7 @@
     "build": {
         "dockerfile": "../Dockerfile"
     },
+    "workspaceFolder": "/workspaces/fMRI_processing",
     "customizations": {
         "vscode": {
             "settings": {
@@ -17,6 +18,8 @@
     },
     "postCreateCommand": "conda init bash ",
     "remoteUser": "root",
-    "features": {
-    }
+    "features": {},
+    "mounts": [
+        "source=${localWorkspaceFolder}/data,target=/workspaces/fMRI_processing/data,type=bind"
+    ]
 }
